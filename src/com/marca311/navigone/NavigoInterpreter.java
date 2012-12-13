@@ -6,12 +6,12 @@ public class NavigoInterpreter {
 	
 	
 	//Queries the navigo server with the location query from either the Origin or Destination fields.
-	public static Document getXMLForLocationQuery(String query)
+	/*public static Document getXMLForLocationQuery(String query)
 	{
 		String queryURL = 
 		Document result = null;
 		return result;
-	}
+	} */
 	
 	//Checks whether or not returned XML file is blank/error.
 	public static boolean checkXMLFile()

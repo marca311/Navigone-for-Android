@@ -1,19 +1,58 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <!-- Origin Text box -->
 
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+       	<EditText
+        android:id="@+id/orginTB"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="@string/originHint"
+        tools:context=".NaviGone"
+        android:lines="1"
+        android:singleLine="true" />
+    
+    	<!-- Destination Text box -->
+    	<!--<EditText
+        android:id="@+id/destinationTB"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:hint="@string/destinationHint"
+        tools:context=".NaviGone"
+        android:lines="1"
+        android:singleLine="true" /> -->
+    	<!-- Submit Button -->
+    	<Button
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_medium"
-        android:text="@string/hello_world"
-        tools:context=".NaviGone" />
-    
-    <EditText
+        android:text="@string/submit_Button" />
+    </LinearLayout>
+    <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/originHint"
-        tools:context=".NaviGone" />
+        android:layout_height="match_parent" >
+        <EditText
+        android:id="@+id/destinationTB"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:hint="@string/destinationHint"
+        tools:context=".NaviGone"
+        android:lines="1"
+        android:singleLine="true" />
+        <Button 
+         	android:id="@+id/submitButton"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/submit_Button" />
+    </LinearLayout>
+    
 
-</RelativeLayout>
+</LinearLayout>
