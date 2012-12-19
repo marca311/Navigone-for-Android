@@ -54,4 +54,10 @@ public class MSVariation {
 			segments[x] = new MSSegment((Element) segmentList.item(x));
 		}
 	}
+	
+	//Getter methods
+	public String[] getHumanReadable() {
+		
+		return null;
+	}
 }

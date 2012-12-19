@@ -68,21 +68,30 @@ public class MSSegment {
 			toLocation = setLocationClass(theElement);
 		}
 	}
-	private MSLocation setLocationClass(Element theElement) {
+	//This method is accessed in MSRoute to set origin and destination of route
+	public static MSLocation setLocationClass(Element theElement) {
 		Element childElement = XMLParser.getElementChild(theElement);
 		String locationType = childElement.getTagName();
 		MSLocation result = null;
 		if (locationType.equals("origin") || locationType.equals("destination")) {
 			childElement = XMLParser.getElementChild(childElement);
-		} if (locationType.equals("address")) {
+		}
+		locationType = childElement.getTagName();
+		if (locationType.equals("address")) {
 			result = new MSAddress(childElement);
 		} else if (locationType.equals("stop")) {
-			result = new MSStop();
+			result = new MSStop(childElement);
 		} else if (locationType.equals("monument")) {
-			result = new MSMonument();
+			result = new MSMonument(childElement);
 		} else if (locationType.equals("point")) {
-			result = new MSLocation();
+			result = new MSLocation(childElement);
 		}
 		return result;
+	}
+	
+	//Getter methods
+	public String[] getHumanReadable() {
+		
+		return null;
 	}
 }
