@@ -2,26 +2,32 @@ package com.marca311.navigone.AddressClasses;
 
 import org.w3c.dom.*;
 
+import com.marca311.navigone.XMLParser;
+
 public class MSStop extends MSLocation {
-	static int stopNumber;
+	static String stopNumber;
 	static String stopName = null;
 	
 	//Methods
 	//Constructor method
 	public MSStop(Element theElement) {
 		super(theElement);
+		rootElement = theElement;
+		setStopNumber();
+		setStopName();
 	}
 	//Setter methods
-	public void setStop(int inputStopNumber, String inputStopName) {
-		stopNumber = inputStopNumber;
-		stopName = inputStopName;
+	private void setStopNumber() {
+		Element theElement = XMLParser.getElementChildByName("key", rootElement);
+		stopNumber = theElement.getTextContent();
+	}
+	private void setStopName() {
+		Element theElement = XMLParser.getElementChildByName("name", rootElement);
+		stopName = theElement.getTextContent();
 	}
 	
 	//Getter methods
-	public int getStopNumber() {
-		return stopNumber;
-	}
-	public String getStopName() {
-		return stopName;
+	public String getHumanReadable() {
+		return stopName + " (" +stopNumber + ")";
 	}
 }

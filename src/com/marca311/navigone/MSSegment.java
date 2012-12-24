@@ -12,12 +12,16 @@ public class MSSegment {
 	private String type = null;
 	private GregorianCalendar startTime = null;
 	private GregorianCalendar endTime = null;
-	private String totalTime = null;
-	private String walkingTime = null;
-	private String waitingTime = null;
-	private String ridingTime = null;
+	private int totalTime;
+	private int walkingTime;
+	private int waitingTime;
+	private int ridingTime;
 	private MSLocation fromLocation = null;
 	private MSLocation toLocation = null;
+	private String busVariation = null;
+	private String busNumber = null;
+	private String routeName = null;
+	private String variationDestination = null;
 	//Element
 	private Element rootElement = null;
 	
@@ -31,7 +35,14 @@ public class MSSegment {
 	private void setSegment() {
 		setType();
 		setTimes();
-		setLocations();
+		if (type.equals("ride")) {
+			setBusVariation();
+			setBusNumber();
+			setRouteName();
+			setVariationDestination();
+		} else {
+			setLocations();
+		}
 	}
 	private void setType() {
 		//Add navigation to object
@@ -40,18 +51,18 @@ public class MSSegment {
 	private void setTimes() {
 		Element workingElement = XMLParser.getElementChildByName("times", rootElement);
 		Element timeElement = XMLParser.getElementChildByName("total", workingElement);
-		totalTime = timeElement.getTextContent();
+		totalTime = Integer.parseInt(timeElement.getTextContent());
 		if (type.equals("walk")) {
 			timeElement = XMLParser.getElementChildByName("walking", workingElement);
-			walkingTime = timeElement.getTextContent();
+			walkingTime = Integer.parseInt(timeElement.getTextContent());
 		} else if (type.equals("transfer")) {
 			timeElement = XMLParser.getElementChildByName("waiting", workingElement);
-			waitingTime = timeElement.getTextContent();
+			waitingTime = Integer.parseInt(timeElement.getTextContent());
 			timeElement = XMLParser.getElementChildByName("walking", workingElement);
-			walkingTime = timeElement.getTextContent();
+			walkingTime = Integer.parseInt(timeElement.getTextContent());
 		} else if (type.equals("ride")) {
 			timeElement = XMLParser.getElementChildByName("riding", workingElement);
-			ridingTime = timeElement.getTextContent();
+			ridingTime = Integer.parseInt(timeElement.getTextContent());
 		}
 		timeElement = XMLParser.getElementChildByName("start", workingElement);
 		startTime = MSUtilities.getCalendarFromString(timeElement.getTextContent());
@@ -89,9 +100,61 @@ public class MSSegment {
 		return result;
 	}
 	
+	private void setBusVariation() {
+		Element theElement = XMLParser.getElementChildByName("variant", rootElement);
+		theElement = XMLParser.getElementChildByName("key", theElement);
+		busVariation = theElement.getTextContent();
+	}
+	private void setBusNumber() {
+		Element theElement = XMLParser.getElementChildByName("variant", rootElement);
+		theElement = XMLParser.getElementChildByName("key", theElement);
+		String variation = theElement.getTextContent();
+		String[] splitVariation = variation.split("-");
+		busNumber = splitVariation[0];
+	}
+	private void setRouteName() {
+		Element theElement = XMLParser.getElementChildByName("variant", rootElement);
+		theElement = XMLParser.getElementChildByName("name", theElement);
+		String variation = theElement.getTextContent();
+		String[] splitVariation = variation.split(" to ");
+		routeName = splitVariation[0];
+	}
+	private void setVariationDestination() {
+		Element theElement = XMLParser.getElementChildByName("variant", rootElement);
+		theElement = XMLParser.getElementChildByName("name", theElement);
+		String variation = theElement.getTextContent();
+		String[] splitVariation = variation.split(" to ");
+		variationDestination = splitVariation[1];
+	}
+	
 	//Getter methods
 	public String[] getHumanReadable() {
-		
-		return null;
+		String[] result = null;
+		if (type.equals("walk")) {
+			result = new String[3];
+			result[0] = fromLocation.getHumanReadable();
+			result[1] = "Walk " + walkingTime + MSUtilities.getMinutePlural(walkingTime);
+			result[2] = toLocation.getHumanReadable();
+		} else if (type.equals("transfer")) {
+			if (walkingTime > 0 && waitingTime == 0) {
+				result = new String[3];
+				result[0] = fromLocation.getHumanReadable();
+				result[1] = "Walk " + walkingTime + MSUtilities.getMinutePlural(walkingTime);
+				result[2] = toLocation.getHumanReadable();
+			} else if (waitingTime > 0 && walkingTime == 0) {
+				result = new String[1];
+				result[0] = "Wait " + waitingTime + MSUtilities.getMinutePlural(waitingTime) + " at " + fromLocation.getHumanReadable();
+			}
+			else if (waitingTime > 0 && walkingTime > 0) {
+				result = new String[3];
+				result[0] = fromLocation.getHumanReadable();
+				result[1] = "Walk " + walkingTime + MSUtilities.getMinutePlural(walkingTime);
+				result[2] = "Wait " + waitingTime + MSUtilities.getMinutePlural(waitingTime) + " at " + toLocation.getHumanReadable();
+			}
+		} else if (type.equals("ride")) {
+			result = new String[1];
+			result[0] = "Ride " + busNumber + " " + routeName + " (" + variationDestination + ")";
+		}
+		return result;
 	}
 }

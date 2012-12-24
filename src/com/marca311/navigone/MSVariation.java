@@ -57,7 +57,17 @@ public class MSVariation {
 	
 	//Getter methods
 	public String[] getHumanReadable() {
-		
-		return null;
+		ArrayList<String> listOfStrings = new ArrayList<String>();
+		//Navigating the segments
+		for (int i = 0; i < numberOfSegments; i++) {
+			String[] currentSegment = segments[i].getHumanReadable();
+			//Navigating the parts of the segments
+			for (int x = 0; x < currentSegment.length; x++) {
+				listOfStrings.add(currentSegment[x]);
+			}
+		}
+		String[] result = new String[listOfStrings.size()];
+		result = listOfStrings.toArray(result);
+		return result;
 	}
 }

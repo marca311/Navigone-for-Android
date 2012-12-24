@@ -57,7 +57,15 @@ public abstract class XMLParser {
 	}
 	public static Element getElementChildByName(String elementName, Element theElement) {
 		NodeList elementList = theElement.getElementsByTagName(elementName);
-		Element result = (Element) elementList.item(0);
+		Node testingNode = elementList.item(0);
+		short nodeType = testingNode.getNodeType();
+		int i = 0;
+		while (nodeType != 1) {
+			i++;
+			testingNode = elementList.item(i);
+			nodeType = testingNode.getNodeType();
+		}
+		Element result = (Element) testingNode;
 		return result;
 	}
 	public static Element getElementChild(Element theElement) {

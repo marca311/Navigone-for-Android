@@ -28,4 +28,8 @@ public abstract class MSUtilities {
 		GregorianCalendar result = new GregorianCalendar(year, month, day, hour, minute, second);
 		return result;
 	}
+	public static String getMinutePlural(int timeUnit) {
+		if (timeUnit == 1) return " minute";
+		else return " minutes";
+	}
 }

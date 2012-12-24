@@ -59,6 +59,8 @@ public class MSRoute {
 		for (int x = 0; x < numberOfVariations; x++) {
 			variations[x] = new MSVariation((Element) planList.item(x));
 		}
+		String[] test = variations[0].getHumanReadable();
+		System.out.println(test);
 	}
 	
 	//Getter methods
