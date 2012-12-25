@@ -1,58 +1,48 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    <!-- Origin Text box -->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
 
-       	<EditText
-        android:id="@+id/orginTB"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:hint="@string/originHint"
-        tools:context=".NaviGone"
-        android:lines="1"
-        android:singleLine="true" />
-    
-    	<!-- Destination Text box -->
-    	<!--<EditText
-        android:id="@+id/destinationTB"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:hint="@string/destinationHint"
-        tools:context=".NaviGone"
-        android:lines="1"
-        android:singleLine="true" /> -->
-    	<!-- Submit Button -->
-    	<Button
-        android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/submit_Button" />
-    </LinearLayout>
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/submit_Button" />
+
         <EditText
-        android:id="@+id/destinationTB"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:hint="@string/destinationHint"
-        tools:context=".NaviGone"
-        android:lines="1"
-        android:singleLine="true" />
-        <Button 
-         	android:id="@+id/submitButton"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="@string/submit_Button" />
-    </LinearLayout>
-    
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/button1"
+            android:layout_alignBottom="@+id/button1"
+            android:layout_alignParentLeft="true"
+            android:ems="10"
+            android:hint="@string/originHint"
+            android:inputType="text" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button1"
+            android:ems="10"
+            android:hint="@string/destinationHint" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/editText2"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="Time"
+            android:inputType="text" />
+
+    </RelativeLayout>
