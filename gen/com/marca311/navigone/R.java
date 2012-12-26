@@ -21,9 +21,9 @@ public final class R {
     }
     public static final class id {
         public static final int button1=0x7f080000;
+        public static final int button2=0x7f080003;
         public static final int editText1=0x7f080001;
         public static final int editText2=0x7f080002;
-        public static final int editText3=0x7f080003;
         public static final int menu_settings=0x7f080008;
         public static final int tableRow1=0x7f080004;
         public static final int tableRow2=0x7f080005;
@@ -40,6 +40,9 @@ public final class R {
     public static final class string {
         public static final int app_name=0x7f050000;
         public static final int destinationHint=0x7f050005;
+        public static final int enteredDestination=0x7f050008;
+        public static final int enteredOrigin=0x7f050007;
+        public static final int enteredTime=0x7f050009;
         public static final int hello_world=0x7f050001;
         public static final int menu_settings=0x7f050002;
         public static final int originHint=0x7f050004;

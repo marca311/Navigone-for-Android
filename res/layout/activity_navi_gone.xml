@@ -18,9 +18,11 @@
             android:layout_alignBaseline="@+id/button1"
             android:layout_alignBottom="@+id/button1"
             android:layout_alignParentLeft="true"
+            android:contentDescription="@string/enteredOrigin"
             android:ems="10"
             android:hint="@string/originHint"
-            android:inputType="text" />
+            android:inputType="text"
+            android:imeOptions="actionNext" />
 
         <EditText
             android:id="@+id/editText2"
@@ -28,21 +30,24 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/button1"
+            android:contentDescription="@string/enteredDestination"
             android:ems="10"
             android:hint="@string/destinationHint" >
 
             <requestFocus />
         </EditText>
 
-        <EditText
-            android:id="@+id/editText3"
+        <Button
+            android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/editText2"
             android:layout_below="@+id/editText2"
-            android:layout_marginTop="15dp"
-            android:ems="10"
+            android:contentDescription="@string/enteredTime"
+            android:gravity="left"
             android:hint="Time"
-            android:inputType="text" />
+            android:text="@string/enteredTime"
+            android:textSize="22sp" />
 
     </RelativeLayout>
