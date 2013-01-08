@@ -96,6 +96,8 @@ public class MSSegment {
 			result = new MSMonument(childElement);
 		} else if (locationType.equals("point")) {
 			result = new MSLocation(childElement);
+		} else if (locationType.equals("intersection")) {
+			
 		}
 		return result;
 	}

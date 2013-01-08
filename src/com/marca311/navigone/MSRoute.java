@@ -41,7 +41,10 @@ public class MSRoute {
 	}
 	private void setOrigin() {
 		//Fix this, I have to set it to go a bit further down the line
-		Element theElement = XMLParser.getElementChildByName("origin", rootElement);
+		Element theElement = XMLParser.getElementChildByName("Segments", rootElement);
+		theElement = XMLParser.getElementChildByName("Segment", theElement);
+		theElement = XMLParser.getElementChildByName("from", theElement);
+		theElement = XMLParser.getElementChildByName("origin", theElement);
 		origin = MSSegment.setLocationClass(theElement);
 	}
 	private void setDestination() {

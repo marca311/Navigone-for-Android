@@ -9,21 +9,25 @@ import com.marca311.navigone.XMLParser;
 public class LocationSearch {
 	//Object variable storage
 	String APIKey = "VzHTwXmEnjQ0vUG0U3y9";
-	Document xmlFile = null;
+	Element rootElement = null;
 	SQLiteDatabase database;
 	
 	//Gets the XML file from the server
-	public void getXMLFile(String query)
-	{
+	public void getXMLFile(String query) {
 		String fixedQuery = query.replace(" ", "+");
 		String URL = "http://api.winnipegtransit.com/locations:" + fixedQuery
 				+ "?api-key=" + APIKey;
-		xmlFile = XMLParser.getAndParseXML(URL);
+		Document xmlFile = XMLParser.getAndParseXML(URL);
+		rootElement = xmlFile.getDocumentElement();
 	}
 	
 	//Gets the Address name from the file 
-	public String getAddressName()
-	{
-		return "Null";
+	public String getAddressName() {
+		
+		return null;
+	}
+	public String getAddressKey() {
+		
+		return null;
 	}
 }
