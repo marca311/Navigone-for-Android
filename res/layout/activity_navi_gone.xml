@@ -1,18 +1,18 @@
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/submitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="@string/submit_Button" />
+            android:text="@string/submit_Button"
+            android:onClick="submitFields" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/originField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/button1"
@@ -21,15 +21,15 @@
             android:contentDescription="@string/enteredOrigin"
             android:ems="10"
             android:hint="@string/originHint"
-            android:inputType="text"
-            android:imeOptions="actionNext" />
+            android:imeOptions="actionNext"
+            android:inputType="text" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/destinationField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/button1"
+            android:layout_below="@+id/originField"
             android:contentDescription="@string/enteredDestination"
             android:ems="10"
             android:hint="@string/destinationHint" >
@@ -38,16 +38,38 @@
         </EditText>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/timeField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_alignRight="@+id/editText2"
-            android:layout_below="@+id/editText2"
+            android:layout_alignRight="@+id/destinationField"
+            android:layout_below="@+id/destinationField"
             android:contentDescription="@string/enteredTime"
             android:gravity="left"
-            android:hint="Time"
             android:text="@string/enteredTime"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:onClick="showTimePickerDialog" />
+
+        <Button
+            android:id="@+id/dateField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/timeField"
+            android:layout_below="@+id/timeField"
+            android:contentDescription="@string/enteredDate"
+            android:gravity="left"
+            android:textSize="22sp"
+            android:onClick="showDatePickerDialog" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/dateField"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="69dp"
+            android:layout_toLeftOf="@+id/submitButton" />
 
     </RelativeLayout>

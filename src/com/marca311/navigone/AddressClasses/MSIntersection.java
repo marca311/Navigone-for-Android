@@ -3,7 +3,7 @@ package com.marca311.navigone.AddressClasses;
 import org.w3c.dom.*;
 import com.marca311.navigone.XMLParser;
 
-public class MSIntersection {
+public class MSIntersection extends MSLocation {
 	private Element rootElement = null;
 	private String intersectionKey = null;
 	private String intersectionName = null;
@@ -19,7 +19,18 @@ public class MSIntersection {
 	//Methods
 	//Constructor method
 	public MSIntersection(Element theElement) {
+		super(theElement);
 		rootElement = theElement;
+		setStreetKey();
+		setStreetType();
+		setStreetAbbr();
+		setStreetName();
+		setCrossStreetKey();
+		setCrossStreetType();
+		setCrossStreetAbbr();
+		setCrossStreetName();
+		setIntersectionKey();
+		setIntersectionName();
 	}
 	
 	//Setter methods
@@ -31,7 +42,7 @@ public class MSIntersection {
 	}
 	//Set this after the street and cross street are identified
 	private void setIntersectionName() {
-		
+		intersectionName = streetName+" "+streetType+" @ "+crossStreetName+" "+crossStreetType;
 	}
 	private void setStreetKey() {
 		Element theElement = XMLParser.getElementChildByName("street", rootElement);
@@ -39,26 +50,51 @@ public class MSIntersection {
 		streetKey = theElement.getTextContent();
 	}
 	private void setStreetName() {
-		//Set this after type maybe? I'll do this later.
+		//Call setStreetType() before calling this method
+		Element theElement = XMLParser.getElementChildByName("street", rootElement);
+		theElement = XMLParser.getElementChildByName("name", rootElement);
+		streetName = theElement.getTextContent();
+		streetName = streetName.replaceAll(" "+streetType, "");
 	}
 	private void setStreetType() {
-		//Element theElement = XMLParser.getElementChildByName(", theElement)
+		//TODO: double check element names on all methods in this class
+		Element theElement = XMLParser.getElementChildByName("street", rootElement);
+		theElement = XMLParser.getElementChildByName("type", rootElement);
+		streetType = theElement.getTextContent();
 	}
 	private void setStreetAbbr() {
-		
+		Element theElement = XMLParser.getElementChildByName("street", rootElement);
+		theElement = XMLParser.getElementChildByName("type", rootElement);
+		streetAbbr = theElement.getAttribute("abbr");
 	}
-	private void crossStreetKey() {
-		
+	private void setCrossStreetKey() {
+		Element theElement = XMLParser.getElementChildByName("cross-street", rootElement);
+		theElement = XMLParser.getElementChildByName("key", theElement);
+		crossStreetKey = theElement.getTextContent();
 	}
-	private void crossStreetName() {
-		
+	private void setCrossStreetName() {
+		//Call setCrossStreetType() first
+		Element theElement = XMLParser.getElementChildByName("street", rootElement);
+		theElement = XMLParser.getElementChildByName("name", rootElement);
+		streetName = theElement.getTextContent();
+		streetName = streetName.replaceAll(" "+streetType, "");
 	}
-	private void crossStreetType() {
-		
+	private void setCrossStreetType() {
+		Element theElement = XMLParser.getElementChildByName("cross-street", rootElement);
+		theElement = XMLParser.getElementChildByName("type", rootElement);
+		crossStreetType = theElement.getTextContent();
 	}
-	private void crossStreetAbbr() {
-		
+	private void setCrossStreetAbbr() {
+		Element theElement = XMLParser.getElementChildByName("cross-street", rootElement);
+		theElement = XMLParser.getElementChildByName("type", rootElement);
+		crossStreetAbbr = theElement.getAttribute("abbr");
 	}
 	
 	//Getter methods
+	public String getHumanReadable() {
+		return intersectionName;
+	}
+	public String getServerQueryable() {
+		return "intersections/"+intersectionKey;
+	}
 }

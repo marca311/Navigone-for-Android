@@ -20,15 +20,18 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int button1=0x7f080000;
-        public static final int button2=0x7f080003;
-        public static final int editText1=0x7f080001;
-        public static final int editText2=0x7f080002;
-        public static final int menu_settings=0x7f080008;
-        public static final int tableRow1=0x7f080004;
-        public static final int tableRow2=0x7f080005;
-        public static final int tableRow3=0x7f080006;
-        public static final int tableRow4=0x7f080007;
+        public static final int button1=0x7f080002;
+        public static final int dateField=0x7f080005;
+        public static final int destinationField=0x7f080003;
+        public static final int menu_settings=0x7f08000b;
+        public static final int originField=0x7f080001;
+        public static final int submitButton=0x7f080000;
+        public static final int tableRow1=0x7f080007;
+        public static final int tableRow2=0x7f080008;
+        public static final int tableRow3=0x7f080009;
+        public static final int tableRow4=0x7f08000a;
+        public static final int textView1=0x7f080006;
+        public static final int timeField=0x7f080004;
     }
     public static final class layout {
         public static final int activity_navi_gone=0x7f030000;
@@ -40,6 +43,7 @@ public final class R {
     public static final class string {
         public static final int app_name=0x7f050000;
         public static final int destinationHint=0x7f050005;
+        public static final int enteredDate=0x7f05000b;
         public static final int enteredDestination=0x7f050008;
         public static final int enteredOrigin=0x7f050007;
         public static final int enteredTime=0x7f050009;
@@ -47,6 +51,7 @@ public final class R {
         public static final int menu_settings=0x7f050002;
         public static final int originHint=0x7f050004;
         public static final int submit_Button=0x7f050006;
+        public static final int timeHint=0x7f05000a;
         public static final int title_activity_navi_gone=0x7f050003;
     }
     public static final class style {

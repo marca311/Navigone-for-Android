@@ -1,14 +1,10 @@
 package com.marca311.navigone;
+import org.apache.http.entity.SerializableEntity;
 import org.w3c.dom.*;
 
 import java.io.*;
 import com.marca311.navigone.MSVariation;
 import com.marca311.navigone.AddressClasses.*;
-
-/*
- * Methods:
- * getFile, saveFile, parse, 
- */
 
 public class MSRoute {
 	private Document theXML = null;
@@ -22,14 +18,11 @@ public class MSRoute {
 	//Methods
 	//Constructor methods
 	public MSRoute(Document theDocument) {
-		setRoute(theDocument);
-	}
-	//Setter methods
-	private void setRoute(Document theDocument) {
 		setDocument(theDocument);
 		setRootElement();
 		setVariations(rootElement);
 	}
+	//Setter methods
 	private void setDocument(Document theDocument) {
 		theXML = theDocument;
 	}
@@ -40,7 +33,6 @@ public class MSRoute {
 		
 	}
 	private void setOrigin() {
-		//Fix this, I have to set it to go a bit further down the line
 		Element theElement = XMLParser.getElementChildByName("Segments", rootElement);
 		theElement = XMLParser.getElementChildByName("Segment", theElement);
 		theElement = XMLParser.getElementChildByName("from", theElement);

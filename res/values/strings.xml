@@ -10,5 +10,7 @@
     <string name="enteredOrigin"></string>
     <string name="enteredDestination"></string>
     <string name="enteredTime"></string>
+    <string name="timeHint">Time</string>
+    <string name="enteredDate"/>
 
 </resources>

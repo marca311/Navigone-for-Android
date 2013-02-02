@@ -28,8 +28,55 @@ public abstract class MSUtilities {
 		GregorianCalendar result = new GregorianCalendar(year, month, day, hour, minute, second);
 		return result;
 	}
+	public static String getReadableTime(int hour, int minute) {
+		String amOrPm = null;
+		String stringMinute = minute+"";
+		if (hour >= 12) {
+			amOrPm = "PM";
+			hour -= 12;
+		} else amOrPm = "AM";
+		if (minute < 9) {
+			stringMinute = "0"+minute;
+		}
+		return hour+":"+stringMinute+" "+amOrPm;
+	}
+	public static String getReadableDate(int year, int month, int day) {
+		Calendar theCalendar = new GregorianCalendar(year, month, day);
+		String monthString = getMonthNames(month);
+		String result = day+" "+monthString+" "+year;
+		return result;
+	}
 	public static String getMinutePlural(int timeUnit) {
 		if (timeUnit == 1) return " minute";
 		else return " minutes";
+	}
+	public static String getMonthNames(int monthNumber) {
+		switch (monthNumber) {
+		case 1:
+			return "January";
+		case 2:
+			return "February";
+		case 3:
+			return "March";
+		case 4:
+			return "April";
+		case 5:
+			return "May";
+		case 6:
+			return "June";
+		case 7:
+			return "July";
+		case 8:
+			return "August";
+		case 9:
+			return "September";
+		case 10:
+			return "October";
+		case 11:
+			return "November";
+		case 12:
+			return "December";
+		}
+		return null;
 	}
 }

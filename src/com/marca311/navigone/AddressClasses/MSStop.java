@@ -30,4 +30,7 @@ public class MSStop extends MSLocation {
 	public String getHumanReadable() {
 		return stopName + " (" +stopNumber + ")";
 	}
+	public String getServerQueryable() {
+		return "stops/"+stopNumber;
+	}
 }

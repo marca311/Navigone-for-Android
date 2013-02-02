@@ -37,11 +37,11 @@ public class MSAddress extends MSLocation {
 	}
 	
 	//Getter methods
-	public String getKey() {
-		return locationKey;
-	}
 	public String getHumanReadable() {
 		String result = streetNumber + " " + streetName;
 		return result;
+	}
+	public String getServerQueryable() {
+		return "addresses/"+locationKey;
 	}
 }

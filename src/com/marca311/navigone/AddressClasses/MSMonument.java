@@ -66,4 +66,7 @@ public class MSMonument extends MSLocation {
 		String result = monumentName + "(" + streetNumber + " " + streetName + ")";
 		return result;
 	}
+	public String getServerQueryable() {
+		return "monuments/"+locationKey;
+	}
 }

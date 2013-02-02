@@ -41,7 +41,7 @@ public abstract class XMLParser {
 	}
 	public static Document getAndParseXML(File theFile) {
 		if (!theFile.exists()) {
-			System.out.println("The file does not exist");
+			System.out.println("The file \""+theFile.getAbsolutePath()+"\" does not exist");
 			return null;
 		}
 		Document result = null;
