@@ -35,4 +35,8 @@ public class MSLocation {
 	public String getHumanReadable() {
 		return latitude + ", " + longitude;
 	}
+	public String getServerQueryable() {
+		//TODO: fix method
+		return null;
+	}
 }

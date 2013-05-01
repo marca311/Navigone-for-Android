@@ -79,7 +79,7 @@ public class MSSegment {
 			toLocation = setLocationClass(theElement);
 		}
 	}
-	//This method is accessed in MSRoute to set origin and destination of route
+	//This method is accessed in MSRoute and MSQuery
 	public static MSLocation setLocationClass(Element theElement) {
 		Element childElement = XMLParser.getElementChild(theElement);
 		String locationType = childElement.getTagName();

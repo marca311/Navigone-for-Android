@@ -8,8 +8,12 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.TableLayout;
 
 public class ResultView extends Activity {
+	
+	TableLayout table;
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

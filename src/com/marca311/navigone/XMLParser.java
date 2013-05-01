@@ -1,6 +1,8 @@
 package com.marca311.navigone;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,7 +14,6 @@ import org.w3c.dom.*;
 
 //This class is mostly for processing things that are used in multiple places.
 public abstract class XMLParser {
-	static String xmlDirectory = "/data/data/com.marca311.navigone/xmls/";
 	//Sends the URL and parses it
 	public static Document getAndParseXML(String theURL)
 	{
@@ -87,6 +88,22 @@ public abstract class XMLParser {
 	}
 	public static Element getElementSibling(Element theElement) {
 		Element result = (Element) theElement.getNextSibling();
+		return result;
+	}
+	
+	public static String getApiKey() {
+		String result = null;
+		File keyFile = new File("apikey");
+		FileReader input = null;
+		BufferedReader buff = null;
+		try {
+			input = new FileReader(keyFile);
+			buff = new BufferedReader(input);
+			result = buff.readLine();
+			buff.close();
+		} catch (Exception e) {
+			System.out.println("There was an error loading the API Key");
+		}
 		return result;
 	}
 }

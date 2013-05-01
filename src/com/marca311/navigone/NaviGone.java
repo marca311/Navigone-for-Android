@@ -9,6 +9,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.EditText;
@@ -22,14 +23,16 @@ import org.w3c.dom.*;
 
 import com.marca311.navigone.AddressClasses.MSLocation;
 import com.marca311.navigone.customclasses.MSCalendar;
+import com.marca311.navigone.customclasses.MSQuery;
 import com.marca311.navigone.uielements.DateSetPicker;
 import com.marca311.navigone.uielements.TimeSetPicker;
+import com.marca311.navigone.uielements.MSAutoCompleteField;
 
 
 public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSetListener, TimeSetPicker.onTimeSetListener {
 	//View variables
-	EditText originField = null;
-	EditText destinationField = null;
+	AutoCompleteTextView originField = null;
+	AutoCompleteTextView destinationField = null;
 	MSLocation origin = null;
 	MSLocation destination = null;
 	Button timeField = null;
@@ -37,6 +40,7 @@ public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSe
 	Button submitButton = null;
 	//Storage variables
 	public MSCalendar queryCalendar = null;
+	MSQuery theQuery = null;
 	OnDateChangedListener dateListener;
 
 	@Override
@@ -45,8 +49,8 @@ public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSe
         setContentView(R.layout.activity_navi_gone);
         
         //Set fields to their variables
-        originField = (EditText)findViewById(R.id.originField);
-        destinationField = (EditText)findViewById(R.id.destinationField);
+        originField = (AutoCompleteTextView)findViewById(R.id.originField);
+        destinationField = (AutoCompleteTextView)findViewById(R.id.destinationField);
         timeField = (Button)findViewById(R.id.timeField);
         dateField = (Button)findViewById(R.id.dateField);
         submitButton = (Button)findViewById(R.id.submitButton);
@@ -56,9 +60,9 @@ public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSe
         timeField.setText(queryCalendar.getTimeString());
         dateField.setText(queryCalendar.getDateString());
     }
+	@Override
     public void onStart() {
     	super.onStart();
-        //FileModifier.checkDataFolder();
         String xmlLocation = Environment.getExternalStorageDirectory().getPath() + "/trip-planner.xml";
         File theFile = new File(xmlLocation);
         Document theDocument = XMLParser.getAndParseXML(theFile);
@@ -81,11 +85,6 @@ public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSe
     	dateFragment.show(getSupportFragmentManager(), "datePicker");
     }
     
-    public void submitFields(View v) {
-    	//Add origin and destination getters
-    	String calendarString = queryCalendar.getServerQueryable();
-    }
-    
     public GregorianCalendar getCalendar() {
     	return queryCalendar.getCalendar();
     }
@@ -97,6 +96,14 @@ public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSe
     public void onTimeSet(int hour, int minute) {
     	queryCalendar.setTime(hour, minute);
     	timeField.setText(queryCalendar.getTimeString());
+    }
+    
+    //Submit button
+    public void submitFields(View v) {
+    	//Note: getText().toString() gets the text from the field
+    	theQuery.setFromString(originField.getText().toString());
+    	theQuery.setToString(originField.getText().toString());
+    	theQuery.setTime(queryCalendar);
     }
     
 }

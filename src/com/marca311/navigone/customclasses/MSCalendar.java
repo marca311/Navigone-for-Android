@@ -107,10 +107,10 @@ public class MSCalendar {
 		setDateString();
 		return dateString;
 	}
-	public String getServerQueryable() {
-		String timeString = mainCalendar.get(Calendar.HOUR)+":"+mainCalendar.get(Calendar.MINUTE);
-		String dateString = mainCalendar.get(Calendar.YEAR)+"-"+mainCalendar.get(Calendar.MONTH)+"-"+mainCalendar.get(Calendar.DAY_OF_MONTH);
-		String result = "&time="+timeString+"&date="+dateString;
-		return result;
+	public String getServerQueryableTime() {
+		return mainCalendar.get(Calendar.HOUR)+":"+mainCalendar.get(Calendar.MINUTE);
+	}
+	public String getServerQueryableDate() {
+		return mainCalendar.get(Calendar.YEAR)+"-"+mainCalendar.get(Calendar.MONTH)+"-"+mainCalendar.get(Calendar.DAY_OF_MONTH);
 	}
 }
