@@ -68,6 +68,7 @@ public abstract class XMLParser {
 		}
 		Element result = (Element) testingNode;
 		return result;
+		
 	}
 	public static Element getElementChild(Element theElement) {
 		NodeList childNodes = theElement.getChildNodes();
@@ -80,7 +81,7 @@ public abstract class XMLParser {
 			nodeType = testingNode.getNodeType();
 		}
 		Element result = (Element) testingNode;
-		return result;
+		return result; 
 		/*
 		Element result = (Element) theElement.getFirstChild();
 		Node otherResult = theElement.getFirstChild();
@@ -88,22 +89,6 @@ public abstract class XMLParser {
 	}
 	public static Element getElementSibling(Element theElement) {
 		Element result = (Element) theElement.getNextSibling();
-		return result;
-	}
-	
-	public static String getApiKey() {
-		String result = null;
-		File keyFile = new File("apikey");
-		FileReader input = null;
-		BufferedReader buff = null;
-		try {
-			input = new FileReader(keyFile);
-			buff = new BufferedReader(input);
-			result = buff.readLine();
-			buff.close();
-		} catch (Exception e) {
-			System.out.println("There was an error loading the API Key");
-		}
 		return result;
 	}
 }

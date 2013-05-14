@@ -9,6 +9,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker.OnDateChangedListener;
@@ -24,6 +25,7 @@ import org.w3c.dom.*;
 import com.marca311.navigone.AddressClasses.MSLocation;
 import com.marca311.navigone.customclasses.MSCalendar;
 import com.marca311.navigone.customclasses.MSQuery;
+import com.marca311.navigone.customclasses.MSSuggestions;
 import com.marca311.navigone.uielements.DateSetPicker;
 import com.marca311.navigone.uielements.TimeSetPicker;
 import com.marca311.navigone.uielements.MSAutoCompleteField;
@@ -38,6 +40,7 @@ public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSe
 	Button timeField = null;
 	Button dateField = null;
 	Button submitButton = null;
+	MSSuggestions suggestions = null;
 	//Storage variables
 	public MSCalendar queryCalendar = null;
 	MSQuery theQuery = null;
@@ -48,8 +51,12 @@ public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navi_gone);
         
+        suggestions = new MSSuggestions();
+        
         //Set fields to their variables
         originField = (AutoCompleteTextView)findViewById(R.id.originField);
+        originField.addTextChangedListener(suggestions);
+        //originField.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, );
         destinationField = (AutoCompleteTextView)findViewById(R.id.destinationField);
         timeField = (Button)findViewById(R.id.timeField);
         dateField = (Button)findViewById(R.id.dateField);
@@ -103,7 +110,7 @@ public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSe
     	//Note: getText().toString() gets the text from the field
     	theQuery.setFromString(originField.getText().toString());
     	theQuery.setToString(originField.getText().toString());
-    	theQuery.setTime(queryCalendar);
+    	theQuery.setCalendar(queryCalendar);
     }
     
 }

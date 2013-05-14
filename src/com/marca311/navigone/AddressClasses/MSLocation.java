@@ -36,7 +36,7 @@ public class MSLocation {
 		return latitude + ", " + longitude;
 	}
 	public String getServerQueryable() {
-		//TODO: fix method
+		//TODO: fix method, there needs to be something here
 		return null;
 	}
 }

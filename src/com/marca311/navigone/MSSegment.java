@@ -45,7 +45,6 @@ public class MSSegment {
 		}
 	}
 	private void setType() {
-		//Add navigation to object
 		type = rootElement.getAttribute("type");
 	}
 	private void setTimes() {
@@ -70,16 +69,12 @@ public class MSSegment {
 		endTime = MSUtilities.getCalendarFromString(timeElement.getTextContent());
 	}
 	private void setLocations() {
-		if (type.equals("ride")) {
-			return;
-		} else {
-			Element theElement = XMLParser.getElementChildByName("from", rootElement);
-			fromLocation = setLocationClass(theElement);
-			theElement = XMLParser.getElementChildByName("to", rootElement);
-			toLocation = setLocationClass(theElement);
-		}
+		Element theElement = XMLParser.getElementChildByName("from", rootElement);
+		fromLocation = setLocationClass(theElement);
+		theElement = XMLParser.getElementChildByName("to", rootElement);
+		toLocation = setLocationClass(theElement);
 	}
-	//This method is accessed in MSRoute and MSQuery
+	//This method is accessed in MSRoute and MSSuggestions
 	public static MSLocation setLocationClass(Element theElement) {
 		Element childElement = XMLParser.getElementChild(theElement);
 		String locationType = childElement.getTagName();

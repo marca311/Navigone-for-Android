@@ -74,7 +74,7 @@ public class MSIntersection extends MSLocation {
 	}
 	private void setCrossStreetName() {
 		//Call setCrossStreetType() first
-		Element theElement = XMLParser.getElementChildByName("street", rootElement);
+		Element theElement = XMLParser.getElementChildByName("cross-street", rootElement);
 		theElement = XMLParser.getElementChildByName("name", rootElement);
 		streetName = theElement.getTextContent();
 		streetName = streetName.replaceAll(" "+streetType, "");

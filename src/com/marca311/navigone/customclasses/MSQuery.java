@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.w3c.dom.Document;
 
+import com.marca311.navigone.Apikey;
 import com.marca311.navigone.MSRoute;
 import com.marca311.navigone.XMLParser;
 import com.marca311.navigone.AddressClasses.*;
@@ -22,10 +23,6 @@ public class MSQuery {
 	private String minTransferWaitTime;
 	private String maxTransferWaitTime;
 	private String maxTransfers;
-	
-	public MSQuery() {
-		//Nothing yet
-	}
 	
 	//Class setters
 	public void setQueryName(String input) {
@@ -68,13 +65,14 @@ public class MSQuery {
 		maxTransfers = input;
 	}
 	
+	//Reformats the mode string to plug it into the server
 	private String setServerQueryableMode(String input) {
 		String result = input.toLowerCase(Locale.CANADA);
 		result = result.replaceAll(" ", "-");
 		return result;
 	}
 	
-	//
+	//Gets the route from all the query data collected
 	public MSRoute getRoute() {
 		MSRoute result;
 		String origin = fromLocation.getServerQueryable();
@@ -88,12 +86,14 @@ public class MSQuery {
 		String min_transfer_wait = minTransferWaitTime;
 		String max_transfer_wait = maxTransferWaitTime;
 		String max_transfers = maxTransfers;
-		String api_key = XMLParser.getApiKey();
+		String api_key = Apikey.getApiKey();
 		String url = generateURL(origin, destination, time, date, mode, easy_access, walk_speed, max_walk_time, min_transfer_wait, max_transfer_wait, max_transfers, api_key);
 		Document theDocument = XMLParser.getAndParseXML(url);
 		result = new MSRoute(theDocument);
 		return result;
 	}
+	
+	
 	public String generateURL(String origin, String destination, String time, String date, String mode, String easy_access, String walk_speed, String max_walk_time, String min_transfer_wait, String max_transfer_wait,String max_transfers, String api_key) {
 		String url = "http://api.winnipegtransit.com/trip-planner?origin="+origin
 				+"&destination="+destination
