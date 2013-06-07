@@ -38,6 +38,7 @@ public class MSRoute {
 		theElement = XMLParser.getElementChildByName("Segment", theElement);
 		theElement = XMLParser.getElementChildByName("from", theElement);
 		theElement = XMLParser.getElementChildByName("origin", theElement);
+		theElement = XMLParser.getElementChild(theElement);
 		origin = MSSegment.setLocationClass(theElement);
 	}
 	private void setDestination() {

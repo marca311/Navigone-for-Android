@@ -57,21 +57,35 @@ public abstract class XMLParser {
 		return result;
 	}
 	public static Element getElementChildByName(String elementName, Element theElement) {
-		NodeList elementList = theElement.getElementsByTagName(elementName);
-		Node testingNode = elementList.item(0);
-		short nodeType = testingNode.getNodeType();
+		/*NodeList elementList = theElement.getChildNodes();
+		for (int i=0; i<elementList.getLength(); i++) {
+			Node testingNode = elementList.item(i);
+			short nodeType = testingNode.getNodeType();
+			if (nodeType != 1 && testingNode.getNodeName().equals(elementName)) {
+				Element result = (Element) testingNode;
+				return result;
+			}
+		}
+		return null; */
+		NodeList childNodes = theElement.getElementsByTagName(elementName);
+		Node testingNode = childNodes.item(0);
 		int i = 0;
-		while (nodeType != 1) {
+		while (!testingNode.getNodeName().equalsIgnoreCase(elementName)) {
 			i++;
-			testingNode = elementList.item(i);
-			nodeType = testingNode.getNodeType();
+			testingNode = childNodes.item(i);
+			if (testingNode == null) {
+				return null;
+			}
+			System.out.println(testingNode.getTextContent());
 		}
 		Element result = (Element) testingNode;
 		return result;
-		
 	}
 	public static Element getElementChild(Element theElement) {
-		NodeList childNodes = theElement.getChildNodes();
+		NodeList childElements = theElement.getElementsByTagName("*");
+		Element result = (Element) childElements.item(0);
+		return result;
+		/*NodeList childNodes = theElement.getChildNodes();
 		Node testingNode = childNodes.item(0);
 		short nodeType = testingNode.getNodeType();
 		int i = 0;
@@ -81,7 +95,7 @@ public abstract class XMLParser {
 			nodeType = testingNode.getNodeType();
 		}
 		Element result = (Element) testingNode;
-		return result; 
+		return result; */
 		/*
 		Element result = (Element) theElement.getFirstChild();
 		Node otherResult = theElement.getFirstChild();

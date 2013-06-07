@@ -70,29 +70,34 @@ public class MSSegment {
 	}
 	private void setLocations() {
 		Element theElement = XMLParser.getElementChildByName("from", rootElement);
+		theElement = XMLParser.getElementChild(theElement);
 		fromLocation = setLocationClass(theElement);
 		theElement = XMLParser.getElementChildByName("to", rootElement);
+		theElement = XMLParser.getElementChild(theElement);
 		toLocation = setLocationClass(theElement);
 	}
-	//This method is accessed in MSRoute and MSSuggestions
+	/*
+	 * This method is accessed in MSRoute and MSSuggestions
+	 * The method expects for variable "theElement" to be the location element
+	 * e.g. intersection, stop, monument, etc...
+	*/	
 	public static MSLocation setLocationClass(Element theElement) {
-		Element childElement = XMLParser.getElementChild(theElement);
-		String locationType = childElement.getTagName();
+		String locationType = theElement.getTagName();
 		MSLocation result = null;
 		if (locationType.equals("origin") || locationType.equals("destination")) {
-			childElement = XMLParser.getElementChild(childElement);
+			theElement = XMLParser.getElementChild(theElement);
 		}
-		locationType = childElement.getTagName();
+		locationType = theElement.getTagName();
 		if (locationType.equals("address")) {
-			result = new MSAddress(childElement);
+			result = new MSAddress(theElement);
 		} else if (locationType.equals("stop")) {
-			result = new MSStop(childElement);
+			result = new MSStop(theElement);
 		} else if (locationType.equals("monument")) {
-			result = new MSMonument(childElement);
+			result = new MSMonument(theElement);
 		} else if (locationType.equals("point")) {
-			result = new MSLocation(childElement);
+			result = new MSLocation(theElement);
 		} else if (locationType.equals("intersection")) {
-			result = new MSIntersection(childElement);
+			result = new MSIntersection(theElement);
 		}
 		return result;
 	}

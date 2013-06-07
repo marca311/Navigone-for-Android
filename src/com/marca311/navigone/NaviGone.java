@@ -51,13 +51,6 @@ public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navi_gone);
         
-        suggestions = new MSSuggestions();
-        
-        //Set fields to their variables
-        originField = (AutoCompleteTextView)findViewById(R.id.originField);
-        originField.addTextChangedListener(suggestions);
-        //originField.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, );
-        destinationField = (AutoCompleteTextView)findViewById(R.id.destinationField);
         timeField = (Button)findViewById(R.id.timeField);
         dateField = (Button)findViewById(R.id.dateField);
         submitButton = (Button)findViewById(R.id.submitButton);
@@ -111,6 +104,20 @@ public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSe
     	theQuery.setFromString(originField.getText().toString());
     	theQuery.setToString(originField.getText().toString());
     	theQuery.setCalendar(queryCalendar);
+    }
+    
+    private void initiateLocationFields() {
+    	suggestions = new MSSuggestions();
+        
+        //Set fields to their variables
+        originField = (AutoCompleteTextView)findViewById(R.id.originField);
+        originField.addTextChangedListener(suggestions);
+        //Threshold is how many characters have to be entered before suggestions appear
+        originField.setThreshold(1);
+        
+        //originField.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, );
+        destinationField = (AutoCompleteTextView)findViewById(R.id.destinationField);
+        destinationField.setThreshold(1);
     }
     
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import android.os.AsyncTask;
 import android.text.Editable;
@@ -20,29 +22,47 @@ public class MSSuggestions extends AsyncTask<String, Integer, MSLocation[]> impl
 	private MSLocation[] locations;
 	private Document queryDocument;
 	
-	public void queryServer(String input) {
+	public MSLocation[] queryServer(String input) {
 		System.out.println("SERVER QUERIED");
 		query = input;
 		String url = "http://api.winnipegtransit.com/locations:"+query
 		+"?api-key="+Apikey.getApiKey();
 		System.out.println("URL: "+url);
 		queryDocument = XMLParser.getAndParseXML(url);
-		setLocationArray();
+		return setLocationArray();
 	}
-	private void setLocationArray() {
+	private MSLocation[] setLocationArray() {
 		Element rootElement = queryDocument.getDocumentElement();
 		Element locationElement = queryDocument.getDocumentElement();
 		ArrayList<MSLocation> locationsList = new ArrayList<MSLocation>();
+		NodeList locationNodeList = rootElement.getChildNodes();
+		locations = new MSLocation[locationNodeList.getLength()];
+		for (int i=0; i < locationNodeList.getLength(); i++) {
+			Node currentNode = locationNodeList.item(i);
+			//Check if node is of type "Element" (1).
+			if (currentNode.getNodeType() == 1) {
+				Element currentElement = (Element) currentNode;
+				MSLocation newLocation = MSSegment.setLocationClass(currentElement);
+				locationsList.add(newLocation);
+			}
+		}
+		for (int i = 0; i < locationsList.size(); i++) {
+			locations[i] = locationsList.get(i);
+		}
+		return locations;
+		/*
 		do {
 			MSLocation test = MSSegment.setLocationClass(locationElement);
-			 locationsList.add(test);
-			 if (test == null) {
-				 System.out.println("IS NULL");
-			 } else {
+			locationsList.add(test);
+			if (test == null) {
+				System.out.println("IS NULL");
+			} else {
 				 System.out.println(test.getHumanReadable());
-			 }
+			}
 		} while ((locationElement = XMLParser.getElementSibling(locationElement)) != null);
-		locations = (MSLocation[]) locationsList.toArray();
+		for (int i = 0; i < locationsList.size(); i++) {
+			locations[i] = locationsList.get(i);
+		} */
 	}
 	public void afterTextChanged(Editable s) {
 		System.out.println("Text has changed");
@@ -57,8 +77,7 @@ public class MSSuggestions extends AsyncTask<String, Integer, MSLocation[]> impl
 	}
 	@Override
 	protected MSLocation[] doInBackground(String... params) {
-		queryServer(params[0]);
-		return null;
+		return queryServer(params[0]);
 	}
 	@Override
 	protected void onPostExecute(MSLocation[] locations) {

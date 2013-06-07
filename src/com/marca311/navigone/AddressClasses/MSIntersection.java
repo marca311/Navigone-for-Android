@@ -52,19 +52,19 @@ public class MSIntersection extends MSLocation {
 	private void setStreetName() {
 		//Call setStreetType() before calling this method
 		Element theElement = XMLParser.getElementChildByName("street", rootElement);
-		theElement = XMLParser.getElementChildByName("name", rootElement);
+		theElement = XMLParser.getElementChildByName("name", theElement);
 		streetName = theElement.getTextContent();
 		streetName = streetName.replaceAll(" "+streetType, "");
 	}
 	private void setStreetType() {
 		//TODO: double check element names on all methods in this class
 		Element theElement = XMLParser.getElementChildByName("street", rootElement);
-		theElement = XMLParser.getElementChildByName("type", rootElement);
+		theElement = XMLParser.getElementChildByName("type", theElement);
 		streetType = theElement.getTextContent();
 	}
 	private void setStreetAbbr() {
 		Element theElement = XMLParser.getElementChildByName("street", rootElement);
-		theElement = XMLParser.getElementChildByName("type", rootElement);
+		theElement = XMLParser.getElementChildByName("type", theElement);
 		streetAbbr = theElement.getAttribute("abbr");
 	}
 	private void setCrossStreetKey() {
@@ -75,18 +75,18 @@ public class MSIntersection extends MSLocation {
 	private void setCrossStreetName() {
 		//Call setCrossStreetType() first
 		Element theElement = XMLParser.getElementChildByName("cross-street", rootElement);
-		theElement = XMLParser.getElementChildByName("name", rootElement);
-		streetName = theElement.getTextContent();
-		streetName = streetName.replaceAll(" "+streetType, "");
+		theElement = XMLParser.getElementChildByName("name", theElement);
+		crossStreetName = theElement.getTextContent();
+		crossStreetName = crossStreetName.replaceAll(" "+crossStreetType, "");
 	}
 	private void setCrossStreetType() {
 		Element theElement = XMLParser.getElementChildByName("cross-street", rootElement);
-		theElement = XMLParser.getElementChildByName("type", rootElement);
+		theElement = XMLParser.getElementChildByName("type", theElement);
 		crossStreetType = theElement.getTextContent();
 	}
 	private void setCrossStreetAbbr() {
 		Element theElement = XMLParser.getElementChildByName("cross-street", rootElement);
-		theElement = XMLParser.getElementChildByName("type", rootElement);
+		theElement = XMLParser.getElementChildByName("type", theElement);
 		crossStreetAbbr = theElement.getAttribute("abbr");
 	}
 	
