@@ -1,24 +1,40 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mainLayout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
-
-        <Button
-            android:id="@+id/submitButton"
+        
+        <!-- Origin text field -->
+        <EditText
+            android:id="@+id/originField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="@string/submit_Button"
-            android:onClick="submitFields" />
-
-        <AutoCompleteTextView
+            android:contentDescription="@string/enteredOrigin"
+            android:ems="10"
+            android:imeOptions="actionNext"
+            android:inputType="text" />
+        
+        <!-- Destination text field -->
+        <EditText
             android:id="@+id/destinationField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/originField"
             android:contentDescription="@string/destinationHint"
-            android:ems="10" />
+            android:ems="10"
+            android:imeOptions="actionNext"
+            android:inputType="text" />
+        
+        <!-- Suggestion list for both location fields -->
+
+        <!-- <ListView
+            android:id="@+id/suggestionList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/originField"
+            android:divider="@android:drawable/divider_horizontal_dark" /> -->
 
         <Button
             android:id="@+id/timeField"
@@ -44,26 +60,16 @@
             android:gravity="left"
             android:textSize="22sp"
             android:onClick="showDatePickerDialog" />
-
-        <TextView
-            android:id="@+id/textView1"
+        
+        
+        
+        <Button
+            android:id="@+id/submitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/dateField"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="69dp"
-            android:layout_toLeftOf="@+id/submitButton" />
-
-        <AutoCompleteTextView
-            android:id="@+id/originField"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:contentDescription="@string/enteredOrigin"
-            android:ems="10"
-            android:imeOptions="actionNext"
-            android:inputType="text" />
+            android:text="@string/submit_Button"
+            android:onClick="submitFields" />
 
     </RelativeLayout>
