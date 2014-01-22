@@ -5,7 +5,6 @@ import org.w3c.dom.*;
 import java.io.*;
 import com.marca311.navigone.MSVariation;
 import com.marca311.navigone.AddressClasses.*;
-import com.marca311.navigone.uielements.MSAutoCompleteField;
 
 public class MSRoute {
 	private Document theXML = null;

@@ -27,7 +27,7 @@ import com.marca311.navigone.Apikey;
 
 public class MSSuggestions extends AsyncTask<String, Integer, MSLocation[]> implements TextWatcher, OnFocusChangeListener {
 		
-	interface MSSuggestionsUpdater {
+	public interface MSSuggestionsUpdater {
 		public void updateSuggestionsBox(MSLocation[] suggestions);
 	}
 	
@@ -109,6 +109,7 @@ public class MSSuggestions extends AsyncTask<String, Integer, MSLocation[]> impl
 		}
 	}
 	public void onFocusChange(View v, boolean hasFocus) {
+		/*
 		if (hasFocus) {
 			EditText textBox = (EditText)parentActivity.findViewById(v.getId());
 			LayoutParams boxParams = textBox.getLayoutParams();
@@ -116,6 +117,6 @@ public class MSSuggestions extends AsyncTask<String, Integer, MSLocation[]> impl
 			
 			suggestionList.setAdapter(array);
 			suggestionList.setLayoutParams(boxParams);
-		}
+		} */
 	}
 }
