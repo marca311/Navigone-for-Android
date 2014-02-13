@@ -3,8 +3,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public abstract class MSUtilities {
-	public static String getDateForFile()
-	{
+	public static String getDateForFile() {
 		Calendar currentTime = Calendar.getInstance();
 		int month = currentTime.get(2);
 		int date = currentTime.get(5);
@@ -15,6 +14,7 @@ public abstract class MSUtilities {
 		String result = year + "." + month + "." + date + "/" + hour + ":" + minute + ":" + second;
 		return result;
 	}
+	
 	public static GregorianCalendar getCalendarFromString(String theString) {
 		String[] formatSplit = theString.split("T");
 		String[] dateSplit = formatSplit[0].split("-");
@@ -28,6 +28,7 @@ public abstract class MSUtilities {
 		GregorianCalendar result = new GregorianCalendar(year, month, day, hour, minute, second);
 		return result;
 	}
+	
 	public static String getReadableTime(int hour, int minute) {
 		String amOrPm = null;
 		String stringMinute = minute+"";
@@ -40,16 +41,19 @@ public abstract class MSUtilities {
 		}
 		return hour+":"+stringMinute+" "+amOrPm;
 	}
+	
 	public static String getReadableDate(int year, int month, int day) {
 		Calendar theCalendar = new GregorianCalendar(year, month, day);
 		String monthString = getMonthNames(month);
 		String result = day+" "+monthString+" "+year;
 		return result;
 	}
+	
 	public static String getMinutePlural(int timeUnit) {
 		if (timeUnit == 1) return " minute";
 		else return " minutes";
 	}
+	
 	public static String getMonthNames(int monthNumber) {
 		switch (monthNumber) {
 		case 1:

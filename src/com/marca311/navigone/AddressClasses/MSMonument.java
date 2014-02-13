@@ -62,7 +62,7 @@ public class MSMonument extends MSLocation {
 	public String getStreetName() {
 		return streetName;
 	}
-	public String getHumanReadable() {
+	public String toString() {
 		String result = monumentName + "(" + streetNumber + " " + streetName + ")";
 		return result;
 	}

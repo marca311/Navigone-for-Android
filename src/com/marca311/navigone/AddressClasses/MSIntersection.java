@@ -91,7 +91,7 @@ public class MSIntersection extends MSLocation {
 	}
 	
 	//Getter methods
-	public String getHumanReadable() {
+	public String toString() {
 		return intersectionName;
 	}
 	public String getServerQueryable() {

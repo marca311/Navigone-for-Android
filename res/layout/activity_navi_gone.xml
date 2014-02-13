@@ -5,8 +5,11 @@
         
     <com.marca311.navigone.uielements.MSTopBar
         android:id="@+id/top_bar"
-        android:layout_width="220dip"
-        android:layout_height="60dip"
-        android:layout_centerInParent="true"/>
+        android:layout_width="260dip"
+        android:layout_height="70dip"
+        android:layout_marginTop="5dip"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/top_bar_rect" />
     
 </RelativeLayout>

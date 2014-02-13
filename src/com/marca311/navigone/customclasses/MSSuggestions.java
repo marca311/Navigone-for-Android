@@ -103,9 +103,9 @@ public class MSSuggestions extends AsyncTask<String, Integer, MSLocation[]> impl
 	@Override
 	protected void onPostExecute(MSLocation[] locations) {
 		for (MSLocation loc : locations) {
-			loc.getHumanReadable();
+			loc.toString();
 			//TODO: get rid of this line when not necessary.
-			System.out.println(loc.getHumanReadable());
+			System.out.println(loc.toString());
 		}
 	}
 	public void onFocusChange(View v, boolean hasFocus) {

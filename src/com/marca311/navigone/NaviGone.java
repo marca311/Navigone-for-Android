@@ -1,5 +1,6 @@
 package com.marca311.navigone;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.DialogFragment;
@@ -63,6 +64,7 @@ public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navi_gone);
         
+        
      // Setup base map
         /*
         final RelativeLayout rl = new RelativeLayout(this);
@@ -108,6 +110,8 @@ public class NaviGone extends FragmentActivity implements DateSetPicker.onDateSe
         	MSRoute currentRoute = new MSRoute(theDocument);
         	System.out.println("Route processed");
         }
+        //Temporary way to set the background color to black to determine where views are
+        this.getWindow().getDecorView().setBackgroundColor(Color.BLACK);
     }
 
     @Override

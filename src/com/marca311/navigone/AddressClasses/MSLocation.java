@@ -32,7 +32,7 @@ public class MSLocation {
 	public String getLongitude() {
 		return longitude;
 	}
-	public String getHumanReadable() {
+	public String toString() {
 		return latitude + ", " + longitude;
 	}
 	public String getServerQueryable() {

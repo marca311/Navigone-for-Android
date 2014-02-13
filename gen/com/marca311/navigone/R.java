@@ -18,6 +18,7 @@ public final class R {
     public static final class drawable {
         public static final int ic_action_search=0x7f020000;
         public static final int ic_launcher=0x7f020001;
+        public static final int top_bar_rect=0x7f020002;
     }
     public static final class id {
         public static final int listView1=0x7f080003;
@@ -49,5 +50,9 @@ public final class R {
     }
     public static final class style {
         public static final int AppTheme=0x7f060000;
+        /**  Any customizations for your app running on pre-3.0 devices here 
+ Any customizations for your app running on devices with Theme.Holo here 
+         */
+        public static final int NaviTheme=0x7f060001;
     }
 }
