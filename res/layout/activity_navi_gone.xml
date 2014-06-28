@@ -1,15 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/mainLayout"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent" >
-        
+    android:id="@+id/mainLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
     <com.marca311.navigone.uielements.MSTopBar
         android:id="@+id/top_bar"
         android:layout_width="260dip"
         android:layout_height="70dip"
-        android:layout_marginTop="5dip"
-        android:layout_centerInParent="true"
         android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dip"
         android:background="@drawable/top_bar_rect" />
-    
+
 </RelativeLayout>

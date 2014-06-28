@@ -134,24 +134,24 @@ public class MSSegment {
 		String[] result = null;
 		if (type.equals("walk")) {
 			result = new String[3];
-			result[0] = fromLocation.getHumanReadable();
+			result[0] = fromLocation.toString();
 			result[1] = "Walk " + walkingTime + MSUtilities.getMinutePlural(walkingTime);
-			result[2] = toLocation.getHumanReadable();
+			result[2] = toLocation.toString();
 		} else if (type.equals("transfer")) {
 			if (walkingTime > 0 && waitingTime == 0) {
 				result = new String[3];
-				result[0] = fromLocation.getHumanReadable();
+				result[0] = fromLocation.toString();
 				result[1] = "Walk " + walkingTime + MSUtilities.getMinutePlural(walkingTime);
-				result[2] = toLocation.getHumanReadable();
+				result[2] = toLocation.toString();
 			} else if (waitingTime > 0 && walkingTime == 0) {
 				result = new String[1];
-				result[0] = "Wait " + waitingTime + MSUtilities.getMinutePlural(waitingTime) + " at " + fromLocation.getHumanReadable();
+				result[0] = "Wait " + waitingTime + MSUtilities.getMinutePlural(waitingTime) + " at " + fromLocation.toString();
 			}
 			else if (waitingTime > 0 && walkingTime > 0) {
 				result = new String[3];
-				result[0] = fromLocation.getHumanReadable();
+				result[0] = fromLocation.toString();
 				result[1] = "Walk " + walkingTime + MSUtilities.getMinutePlural(walkingTime);
-				result[2] = "Wait " + waitingTime + MSUtilities.getMinutePlural(waitingTime) + " at " + toLocation.getHumanReadable();
+				result[2] = "Wait " + waitingTime + MSUtilities.getMinutePlural(waitingTime) + " at " + toLocation.toString();
 			}
 		} else if (type.equals("ride")) {
 			result = new String[1];

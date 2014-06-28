@@ -15,13 +15,13 @@ public class MSSuggestionBox extends AutoCompleteTextView {
 		super(context);
 		// TODO Auto-generated constructor stub
 	}
+
 	public MSSuggestionBox(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
+
 	public MSSuggestionBox(Context context, AttributeSet attrs, int defStyle) {
-		super( context, attrs, defStyle );
+		super(context, attrs, defStyle);
 	}
-	
-	
-	
+
 }
