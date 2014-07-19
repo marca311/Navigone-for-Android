@@ -135,6 +135,11 @@ public class NaviGone extends FragmentActivity implements
 		dateFragment.show(getSupportFragmentManager(), "datePicker");
 	}
 
+	/*
+	 * Delegate methods for date and time pickers
+	 * @see com.marca311.navigone.uielements.DateSetPicker.onDateSetListener#getCalendar()
+	 */
+	
 	public GregorianCalendar getCalendar() {
 		return queryCalendar.getCalendar();
 	}

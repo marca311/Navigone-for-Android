@@ -44,17 +44,36 @@ public class MSSuggestions extends AsyncTask<String, Integer, MSLocation[]>
 	private ListView suggestionList;
 
 	private MSLocation[] queryServer(String input) {
-		System.out.println("SERVER QUERIED");
+		// Checks if the inputted text is blank and does not query the server.
+		if (checkBlank(input)) {
+			return null;
+		}
 		query = input;
 		query = query.replace(" ", "+");
 		String url = "http://api.winnipegtransit.com/locations:" + query
 				+ "?api-key=" + Apikey.getApiKey();
 		System.out.println("URL: " + url);
 		queryDocument = XMLParser.getAndParseXML(url);
-		return setLocationArray();
+		MSLocation[] result = setLocationArray();
+		if (result != null) {
+			suggestionsUpdater.updateSuggestionsBox(result);
+		}
+		return result;
+	}
+	
+	private boolean checkBlank(String input) {
+		if (input.equals("") || input == null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private MSLocation[] setLocationArray() {
+		// Checks if the returned xml file is non-existant
+		if (queryDocument == null) {
+			return null;
+		}
 		Element rootElement = queryDocument.getDocumentElement();
 		Element locationElement = queryDocument.getDocumentElement();
 		ArrayList<MSLocation> locationsList = new ArrayList<MSLocation>();
@@ -106,6 +125,10 @@ public class MSSuggestions extends AsyncTask<String, Integer, MSLocation[]>
 
 	@Override
 	protected void onPostExecute(MSLocation[] locations) {
+		// Checks if the returned xml file is non-existant
+		if (locations == null) {
+			return;
+		}
 		for (MSLocation loc : locations) {
 			loc.toString();
 			// TODO: get rid of this line when not necessary.

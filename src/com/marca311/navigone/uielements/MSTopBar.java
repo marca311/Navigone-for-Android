@@ -26,11 +26,13 @@ public class MSTopBar extends ViewGroup {
 		// topLabel.setBackgroundColor(Color.BLACK);
 		this.addView(topLabel);
 
-		suggestionBoxListener = new MSSuggestionBoxListener(suggestionBox, 1);
-
 		suggestionBox = new MSSuggestionBox(context);
-		suggestionBox.setThreshold(1);
+		
+		// The 1 signifies the origin field
+		suggestionBoxListener = new MSSuggestionBoxListener(suggestionBox, 1);
+		suggestionBox.setOnItemClickListener(suggestionBoxListener);
 		suggestionBox.setOnFocusChangeListener(suggestionBoxListener);
+		suggestionBox.addTextChangedListener(suggestionBoxListener);
 
 		// suggestionBox.setBackgroundColor(Color.BLUE);
 		this.addView(suggestionBox);
@@ -44,9 +46,9 @@ public class MSTopBar extends ViewGroup {
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		int width = r - l;
 		int height = b - t;
+		// Custom spacing in the elements inside the bar.
 		topLabel.layout(10, 10, r - l - 10, height / 3);
 		suggestionBox.layout(10, height / 3, r - l - 10, b - t - 10);
-		return;
 	}
 
 	public int convertToDIP(float pixels) {
